@@ -1,0 +1,63 @@
+#t{
+  font-size: 150px;
+}
+
+
+
+.left, .right{
+ width:15%;
+  float: top;
+   height: 100%;
+   display: inline-block;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+
+}
+
+.header{
+  height: 10%;
+}
+
+.header h1{
+  /*margin-left: 18%;*/
+  color: white;
+  width: 100%;
+  margin: auto;
+}
+.title{
+  margin-left: 1em;
+}
+.separator{
+  color: #f8f6ea;
+  margin-left: 1em;
+}
+
+.board{
+  width:70%;
+  display: inline-block;
+}
+
+.body_content{
+  padding-top:3%;
+}
+.margin{
+  height: 1em;
+}
+
+.simu_num{
+  font-style: bold;
+  font-size: 2em;
+  color: red;
+}
+.nMove{
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  display: block;
+}

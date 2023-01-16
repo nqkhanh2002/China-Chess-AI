@@ -1,0 +1,180 @@
+<div class="header">
+	<sm-menu  class="inverted teal">
+		<h1 class="ui center aligned header"><span class="separator"></span> <span class="title">Chinese Chess AI Engine</span></h1>
+	</sm-menu>
+</div>
+
+<div class="body_content" (keyup.Enter)="board.initGame()">
+	<board #board class="board" (onResultsUpdated)="update_result(board.results, board.humanMode, [board.redAgentType, board.redAgentDepth, board.blackAgentType, board.blackAgentDepth])" (onTimeUpdated)="update_runtime(board.runtime_dict)" (onWeightUpdated)="update_weight(board.state.redAgent.strategy==3? board.weigths_1: undefined, board.state.blackAgent.strategy==3? board.weigths_2:undefined)"
+					(onClear)="clear()"></board>
+
+	<div class="left">
+		<button class="ui green basic button fluid">
+		<sm-checkbox label="{{board.humanMode?'Human Player':'Simulation'}}" [control]="humanMode " type="toggle " (change)="board.changeMode() "></sm-checkbox>
+		</button>
+
+		<div class="margin"></div>
+
+
+		<div *ngIf="board.humanMode">
+			<sm-button class="fluid medium negative " icon="refresh " (click)="board.initGame() ">Restart</sm-button>
+			<div class="margin"></div>
+			<sm-button [disabled]="!board.lastState" class="fluid medium teal control " icon="undo" (click)="board.go2PreviousState() ">Undo </sm-button>
+			<div class="margin"></div>
+			<hr/>
+		</div>
+
+
+
+		<div *ngIf="!board.humanMode">
+			<sm-button [disabled]="board.simulation_state < 1" [disabled]="board.simulation_state == 1" class="fluid medium negative " icon="stop " (click)="board.stop_simulate() ">Stop</sm-button>
+			<div class="margin"></div>
+			<sm-button *ngIf="board.simulation_state >= 0 && board.nSimulations>0" [disabled]="board.simulation_state == 1" class="fluid medium teal control " icon="Recycle " (click)="board.continue_simulate() ">Continue</sm-button>
+			<sm-button *ngIf="board.simulation_state < 0 " class="fluid medium teal control " icon="twitter " (click)="board.click_simulate() ">Simulate </sm-button>
+			<div class="margin"></div>
+
+
+			<div id="redAgentSelection">
+				<div class=" margin "></div>
+				<div *ngIf="!board.humanMode ">
+					<h4 class="ui horizontal divider header red"><i class="Flag red icon"></i>Red</h4>
+
+					<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseRedAgent($event.target.value) ">
+						<option>0-Greedy </option>
+						<option>1-ABPruning</option>
+						<option>2-MoveReorder</option>
+						<option>3-TDLeaner</option>
+						<option>4-TDLean(Trained)</option>
+						<option>5-MCTS</option>
+						<option>6-Ultimate</option>
+					</sm-select>
+
+				</div>
+				<div class=" margin "></div>
+				<sm-select class="fluid" *ngIf="board.redAgentType>0 && board.redAgentType!=5" placeholder="Depth (2)" (change)="board.chooseRedAgentDepth($event.target.value) ">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+				</sm-select>
+				<sm-select class="fluid" *ngIf="board.redAgentType==5" placeholder="Simulations" (change)="board.chooseRedSimulations($event.target.value) ">
+					<option>1000</option>
+					<option>2000</option>
+					<option>3000</option>
+					<option>4000</option>
+					<option>5000</option>
+				</sm-select>
+			</div>
+		</div>
+		<div class=" margin "></div>
+
+		<div id="blackAgentSelection">
+			<h4 class="ui horizontal divider header black"><i class="Flag icon"></i>Black</h4>
+			<sm-select class="fluid" placeholder="Strategy (Greedy)" (change)="board.chooseBlackAgent($event.target.value) ">
+				<option>0-Greedy </option>
+				<option>1-ABPruning</option>
+				<option>2-MoveReorder</option>
+				<option>3-TDLeaner</option>
+				<option>4-TDLean(Trained)</option>
+				<option>5-MCTS</option>
+				<option>6-Ultimate</option>
+			</sm-select>
+			<div class=" margin "></div>
+			<sm-select class="fluid" *ngIf="board.blackAgentType>0 && board.blackAgentType!=5" placeholder="Depth (2)" (change)="board.chooseBlackAgentDepth($event.target.value) ">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+			</sm-select>
+			<sm-select class="fluid" *ngIf="board.blackAgentType==5" placeholder="Simulations" (change)="board.chooseBlackSimulations($event.target.value) ">
+				<option>1000</option>
+				<option>2000</option>
+				<option>3000</option>
+				<option>4000</option>
+				<option>5000</option>
+			</sm-select>
+		</div>
+
+
+		<div class="margin "></div>
+
+
+		<div *ngIf="board.simulation_state == -1 && !board.humanMode">
+			<div class="margin"></div>
+			<div class="ui input focus fluid">
+				<input type="text" placeholder="Number of Simulations (100)" (change)="board.chooseNSimulations($event.target.value)">
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div class="right ">
+
+		<h3 class="ui horizontal divider header"><i class="Sitemap icon"></i>Game State</h3>
+
+		<div *ngIf="!board.humanMode" id="n_simulations">
+			<button class="ui fluid blue basic button">Simulating <p class="simu_num">{{board.nSimulations}}</p>  Games</button>
+		</div>
+
+		<div class="ui segments">
+			<div class="ui segment center aligned icon">
+				<i class="paw icon"></i>
+			</div>
+
+			<div class="ui red segment">
+				<h4 class="ui red" style="color:red">Red: {{board.state.redAgent.pastMoves.length}}</h4>
+				<div class="nMove" *ngIf="board.state.redAgent.pastMoves.length>0 && board.state.playingTeam!=1">
+					<img src="resource/img/pieces/1/{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].name[0]}}.png">
+					<h3>{{board.state.redAgent.pastMoves[board.state.redAgent.pastMoves.length-1].position}}</h3>
+				</div>
+				<div *ngIf="board.state.playingTeam==1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
+			</div>
+
+			<div class="ui black segment">
+				<h4 class="ui  black">Black: {{board.state.blackAgent.pastMoves.length}}</h4>
+				<div class="nMove" *ngIf="board.state.blackAgent.pastMoves.length>0 && board.state.playingTeam==1">
+					<img src="resource/img/pieces/-1/{{board.state.blackAgent.pastMoves[board.state.blackAgent.pastMoves.length-1].name[0]}}.png">
+					<h3>{{board.state.blackAgent.pastMoves[board.state.blackAgent.pastMoves.length-1].position}}</h3>
+				</div>
+
+
+				<div *ngIf="board.state.playingTeam!=1 && board.state.endFlag==null && !board.humanMode && board.simulation_state==1 " class="ui active centered inline loader "></div>
+
+				<div *ngIf="board.state.playingTeam!=1 && board.state.endFlag==null && board.humanMode" class="ui active centered inline loader "></div>
+			</div>
+		</div>
+
+		<div class="ui segments" *ngIf="board.state.endFlag!=null">
+			<div class="ui segment center aligned icon">
+				<i *ngIf="board.state.endFlag == 1" class="circular flag red icon"></i>
+				<i *ngIf="board.state.endFlag != 1" class="circular flag black icon"></i>
+				<h4 class="ui aligned center red" style="color:red">{{board.state.endFlag==0? 'DRAW' : 'WIN'}}</h4>
+			</div>
+			<div class="ui red segment center aligned">
+				<img *ngIf="board.state.endFlag >=0" src="resource/img/pieces/1/k.png" alt="">
+				<img *ngIf="board.state.endFlag <=0" src="resource/img/pieces/-1/k.png" alt="">
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+</div>
+
+
+<div class="analysis">
+	<winRater></winRater>
+	<runtimeAnalysist></runtimeAnalysist>
+	<weightTable [depth1]="board.state.redAgent.DEPTH" [depth2]="board.state.blackAgent.DEPTH"></weightTable>
+</div>
+div>

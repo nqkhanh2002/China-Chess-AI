@@ -1,0 +1,10 @@
+node_modules/*
+**/fonts/*
+client/**/*.js
+server/**/*.js
+**/jquery*.js
+*.DS_Store
+*.js.map
+typings/*
+*.gz
+*-lock*

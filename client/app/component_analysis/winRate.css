@@ -1,0 +1,19 @@
+.plot{
+  width: 86%;
+  margin: 8em auto;
+  padding: 5em;
+}
+
+.graph{
+  margin-top: 3em;
+}
+
+h3{
+  /*margin-bottom: -20em;*/
+}
+
+#switch{
+  width: 100%;
+  margin: auto;
+  padding: auto;
+}

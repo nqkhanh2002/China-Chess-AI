@@ -1,0 +1,135 @@
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CS221-Chinese Chess AI</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="./resource/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="./resource/styles.css">
+
+        <!-- 1. Load libraries -->
+        <script src="./resource/js/jquery-3.1.1.min.js"></script>
+        <script src="./resource/semantic.min.js"></script>
+        <base href=".">
+        <style>
+
+
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <div ng-reflect-class-name="ui menu inverted" class="ui menu inverted Teal">
+
+
+                <a href="http://stanford.edu/" class="item">
+                    <img class="ui avatar image" src="resource/img/stanford.png">
+                </a>
+                <div class="title">
+                    <h3 class="ui center aligned subtitle">
+            <a href="http://web.stanford.edu/class/cs221/">Stanford CS221 - Artificial Intelligence: Principles and Techniques</a>
+          </h3>
+                    <h1>Chinese Chess AI</h1>
+                </div>
+
+                <a href="http://stanford.edu/~dengl11/" class="item">
+                    <img class="ui avatar image" src="resource/img/dengli.png">
+                    <div>Li</div>
+                </a>
+            </div>
+
+            <div class="body">
+                <div class="card">
+
+                    <div class="ui segments">
+                        <div class="ui red segment">
+                            <h5>This is my Course Project for CS221 at Stanford in 2016 Autumn.</h5>
+                        </div>
+
+                        <div class="ui red segment">
+                            <p class="desc">This project aims to implement an AI game engine for Chinese chess, which is a popular board game in China. A simulator with web interface and server is designed. User can play against with the computer, and can also watch
+                                different strategies playing against each other with live analysis.</p>
+                        </div>
+
+                    </div>
+
+
+                    <h4>Simulator</h4>
+                    <div class="ui teal segment">
+                        <div class="desc">
+                            Web is used as the game interface for its flexibility and user-friendliness. Two games modes can be selected by the user:
+                            <p class="italic bold_text">Human Mode</p> and
+                            <p class="italic bold_text">Simulation Mode</p>. In
+                            <p class="italic bold_text">Human Mode</p> , human player plays against the computer with selected strategy and search depth. Clicking on a piece, the legal moves for that piece are highlighted. In
+                            <p class="italic bold_text">Simulation Mode</p>, two policies play against each other for multiple games by the computer, with selected policy and search depth for each team. Live winning rate for each team for all the games played so far is plotted below
+                            for comparison and analysis.
+                        </div>
+                        <div class="center_text">
+                            <img class="mid_img" src="resource/img/platform.png" alt="">
+
+                        </div>
+                    </div>
+                    <div class="gif center_text">
+                        <img src="resource/img/game.gif" alt="">
+                    </div>
+
+
+
+                    <h4>Effenciency</h4>
+                    <div class="ui blue segment">
+                        <div id="effiTable" class="center_text">
+                            <img src="resource/img/effenciency.png" alt="">
+                        </div>
+
+                    </div>
+                    <h4>Analysis</h4>
+                    <div class="ui purple segment">
+                        <div class="center_text">
+                            <img class="mid_img" src="resource/img/greedyvsgreedy.png" alt="">
+                            <img class="mid_img" src="resource/img/Reorder3-2.png" alt="">
+                        </div>
+
+                    </div>
+
+
+                    <h4>Installation</h4>
+                    <div class="ui green segment">
+                        <div class="desc comment italic"># NodeJs is required as the server</div>
+                        <div class="desc comment italic"># Install Dependencies</div>
+                        <div class="desc code">npm install</div>
+                        <div class="sep"></div>
+                        <div class="desc comment italic"># Start the server</div>
+                        <div class="desc code">npm start</div>
+                        <div class="sep"></div>
+                        <div class="desc comment italic"># Open Browser and visit http://localhost:3000/</div>
+                    </div>
+                    <div class="sep"></div>
+                    <h4>Thanks</h4>
+                    <div class="ui yellow segment ">
+                        <div class="desc">This project is advised by TA
+                            <p class="italic">Kaidi Yan</p>.</div>
+                    </div>
+                    <div class="mid_margin_top tail">
+                        <div class="ui divider horizontal center">
+                            2016 Stanford CS221
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sep"></div>
+                <div class="sep"></div>
+                <div class="sep"></div>
+            </div>
+
+
+
+
+
+
+
+    </body>
+
+</html>
