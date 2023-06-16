@@ -1,3 +1,4 @@
+<h1 align="center">BUILDING CHINESE CHESS AI ENGINE BY TYPESRCIPT</h1>
 
 ## Install
 ```bash
@@ -27,6 +28,8 @@ Open your browser, go to `http://localhost:3000/` and you should be good to go
     - You may implement a more powerful engine in C/C++ by calling a subprocess in server, [NodeJS Child Process](https://nodejs.org/api/child_process.html) should help
  
 <br>
+
 --------------
+
 Thanks for your interest :)
 <br><br>
