@@ -1,3 +1,4 @@
+
 ## Install
 ```bash
 # clone
@@ -14,8 +15,7 @@ npm start
 Open your browser, go to `http://localhost:3000/` and you should be good to go 
 
 --------------
-
-<br><br>
+<br>
 
 ## Disclaimer
 - AI algofithms in the backend computation engine need to be enchanced (I was a bit hasty when then poster session was approaching >\_<)
@@ -25,10 +25,8 @@ Open your browser, go to `http://localhost:3000/` and you should be good to go
 - Effienciency need to be imporved
     - Current computation engine is in javascript, which is not fast enough (I did not know how to call other executables from nodeJS then..., but now I do, please see below)
     - You may implement a more powerful engine in C/C++ by calling a subprocess in server, [NodeJS Child Process](https://nodejs.org/api/child_process.html) should help
-
-
-
-<br><br>
+ 
+<br>
 --------------
 Thanks for your interest :)
 <br><br>
